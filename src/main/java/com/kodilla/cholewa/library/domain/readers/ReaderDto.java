@@ -1,4 +1,4 @@
-package com.kodilla.cholewa.library.domain;
+package com.kodilla.cholewa.library.domain.readers;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

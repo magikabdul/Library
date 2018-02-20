@@ -1,6 +1,7 @@
 package com.kodilla.cholewa.library;
 
-import com.kodilla.cholewa.library.domain.Reader;
+import com.kodilla.cholewa.library.domain.readers.Reader;
+import com.kodilla.cholewa.library.domain.titles.Title;
 import com.kodilla.cholewa.library.repository.DbService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,5 +33,23 @@ public class LibraryApplicationTests {
 
 		//CleanUp
 		service.deleteReader(id);
+	}
+
+	@Test
+	public void testSaveTitle() {
+		//Given
+		Title title = new Title("Code", "Jim Moore", 2015);
+
+		//When
+		service.saveTitle(title);
+
+		Long id = title.getId();
+		Title findTitle = service.getTitle(id);
+
+		//Then
+		Assert.assertEquals(id, findTitle.getId());
+
+		//CleanUp
+		service.deleteTitle(id);
 	}
 }
