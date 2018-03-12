@@ -4,20 +4,18 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Entity(name = "TITLES")
+@SequenceGenerator(name = "TITLE_GEN", sequenceName = "TITLE_SEQ")
 public class Title {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TITLE_GEN")
     @NotNull
     @Column(name = "ID", unique = true)
     private Long id;

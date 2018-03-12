@@ -1,5 +1,6 @@
 package com.kodilla.cholewa.library;
 
+import com.kodilla.cholewa.library.domain.copies.Copy;
 import com.kodilla.cholewa.library.domain.readers.Reader;
 import com.kodilla.cholewa.library.domain.titles.Title;
 import com.kodilla.cholewa.library.repository.DbService;
@@ -51,5 +52,23 @@ public class LibraryApplicationTests {
 
 		//CleanUp
 		service.deleteTitle(id);
+	}
+
+	@Test
+	public void testSaveCopy() {
+		//Given
+		Copy copy = new Copy(1L, Copy.STATUS_IN_USE);
+
+		//When
+		service.saveCopy(copy);
+
+		Long id = copy.getId();
+		Copy findCopy = service.getCopy(id);
+
+		//Then
+		Assert.assertEquals(id, findCopy.getId());
+
+		//CleanUp
+		service.deleteCopy(id);
 	}
 }
