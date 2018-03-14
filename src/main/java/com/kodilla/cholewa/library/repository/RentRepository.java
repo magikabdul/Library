@@ -1,14 +1,14 @@
 package com.kodilla.cholewa.library.repository;
 
-import com.kodilla.cholewa.library.domain.readers.Reader;
+import com.kodilla.cholewa.library.domain.rents.Rent;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 
-@Component
 @Transactional
-public interface ReaderRepository extends CrudRepository<Reader, Long> {
+@Component
+public interface RentRepository extends CrudRepository<Rent, Long> {
 
-    Reader getReaderById(Long readerId);
+    Rent getRentById(Long Id);
 }

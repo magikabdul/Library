@@ -1,13 +1,13 @@
 package com.kodilla.cholewa.library.domain.titles;
 
-import lombok.AllArgsConstructor;
+import com.kodilla.cholewa.library.domain.copies.Copy;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Entity(name = "TITLES")
@@ -29,6 +29,14 @@ public class Title {
     @Column(name = "PUBLICATION_YEAR")
     private int publicationYear;
 
+    @OneToMany(
+            targetEntity = Copy.class,
+            mappedBy = "title",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<Copy> copyList;
+
     public Title (String title, String author, int publicationYear) {
         this.title = title;
         this.author = author;
@@ -49,5 +57,9 @@ public class Title {
 
     private void setPublicationYear(int publicationYear) {
         this.publicationYear = publicationYear;
+    }
+
+    public void setCopyList(List<Copy> copyList) {
+        this.copyList = copyList;
     }
 }

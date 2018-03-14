@@ -10,9 +10,5 @@ import javax.transaction.Transactional;
 @Transactional
 public interface TitleRepository extends CrudRepository<Title, Long> {
 
-    Title save(Title title);
-
-    void deleteById(Long titleId);
-
     Title getTitleById(Long titleId);
 }

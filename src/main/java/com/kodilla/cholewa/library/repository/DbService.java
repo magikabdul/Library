@@ -2,6 +2,7 @@ package com.kodilla.cholewa.library.repository;
 
 import com.kodilla.cholewa.library.domain.copies.Copy;
 import com.kodilla.cholewa.library.domain.readers.Reader;
+import com.kodilla.cholewa.library.domain.rents.Rent;
 import com.kodilla.cholewa.library.domain.titles.Title;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ public class DbService {
 
     @Autowired
     private CopyRepository copyRepository;
+
+    @Autowired
+    private RentRepository rentRepository;
 
     public Reader saveReader(final Reader reader) {
         return readerRepository.save(reader);
@@ -51,5 +55,17 @@ public class DbService {
 
     public Copy getCopy(final Long copyId) {
         return copyRepository.getCopyById(copyId);
+    }
+
+    public Rent saveRent(final Rent rent) {
+        return rentRepository.save(rent);
+    }
+
+    public void deleteRent(final Long rentId) {
+        rentRepository.deleteById(rentId);
+    }
+
+    public Rent getRent(final Long rentId) {
+        return rentRepository.getRentById(rentId);
     }
 }

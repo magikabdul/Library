@@ -10,9 +10,5 @@ import javax.transaction.Transactional;
 @Repository
 public interface CopyRepository extends CrudRepository<Copy, Long> {
 
-    //Copy save(Copy copy);
-
-    void deleteById(Long id);
-
     Copy getCopyById(Long id);
 }

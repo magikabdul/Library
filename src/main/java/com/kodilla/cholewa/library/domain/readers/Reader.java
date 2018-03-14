@@ -1,19 +1,20 @@
 package com.kodilla.cholewa.library.domain.readers;
 
-import lombok.AllArgsConstructor;
+import com.kodilla.cholewa.library.domain.rents.Rent;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Entity(name = "READERS")
 @SequenceGenerator(name = "READER_GEN", sequenceName = "READER_SEQ")
 public class Reader {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "READER_GEN")
     @NotNull
@@ -28,6 +29,14 @@ public class Reader {
 
     @Column(name = "CREATED")
     private Date created;
+
+    @OneToMany(
+            targetEntity = Rent.class,
+            mappedBy = "reader",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<Rent> rentList;
 
     public Reader(String firstName, String lastName) {
         this.firstName = firstName;
@@ -49,5 +58,9 @@ public class Reader {
 
     private void setCreated(Date created) {
         this.created = created;
+    }
+
+    public void setRentList(List<Rent> rentList) {
+        this.rentList = rentList;
     }
 }

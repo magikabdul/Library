@@ -1,13 +1,14 @@
 package com.kodilla.cholewa.library.domain.copies;
 
-import lombok.AllArgsConstructor;
+import com.kodilla.cholewa.library.domain.rents.Rent;
+import com.kodilla.cholewa.library.domain.titles.Title;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Entity(name = "COPIES")
@@ -23,14 +24,23 @@ public class Copy {
     @Column(name = "ID", unique = true)
     private Long id;
 
-    @Column(name = "TITLE_ID")
-    private Long titleId;
+    @ManyToOne
+    @JoinColumn(name = "TITLE_ID")
+    private Title title;
 
     @Column(name = "STATUS")
     private String status;
 
-    public Copy(Long titleId, String status) {
-        this.titleId = titleId;
+    @OneToMany(
+            targetEntity = Rent.class,
+            mappedBy = "copy",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<Rent> rentList;
+
+    public Copy(Title title, String status) {
+        this.title = title;
         this.status = status;
     }
 
@@ -38,11 +48,15 @@ public class Copy {
         this.id = id;
     }
 
-    private void setTitleId(Long titleId) {
-        this.titleId = titleId;
+    public void setTitle(Title title) {
+        this.title = title;
     }
 
-    private void setStatus() {
+    private void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setRentList(List<Rent> rentList) {
+        this.rentList = rentList;
     }
 }
