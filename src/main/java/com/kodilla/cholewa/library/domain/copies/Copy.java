@@ -14,6 +14,7 @@ import java.util.List;
 @Entity(name = "COPIES")
 @SequenceGenerator(name = "COPIES_GEN", sequenceName = "COPIES_SEQ")
 public class Copy {
+    public static final String STATUS_AVAILABLE = "available";
     public static final String STATUS_IN_USE = "in use";
     public static final String STATUS_DAMAGED = "damaged";
     public static final String STATUS_LOST = "lost";
@@ -52,7 +53,7 @@ public class Copy {
         this.title = title;
     }
 
-    private void setStatus(String status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

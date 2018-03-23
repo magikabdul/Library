@@ -1,4 +1,4 @@
-package com.kodilla.cholewa.library.controller;
+package com.kodilla.cholewa.library.expeptions;
 
 public class CopyNotFoundException extends Exception {
 }

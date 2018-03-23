@@ -1,6 +1,7 @@
 package com.kodilla.cholewa.library.domain.readers;
 
 import com.kodilla.cholewa.library.domain.rents.Rent;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Entity(name = "READERS")
 @SequenceGenerator(name = "READER_GEN", sequenceName = "READER_SEQ")

@@ -11,4 +11,6 @@ import javax.transaction.Transactional;
 public interface CopyRepository extends CrudRepository<Copy, Long> {
 
     Copy getCopyById(Long id);
+
+    //int countByTitleMatchesAndStatusOrStatusAndStatusInUse(String string);
 }

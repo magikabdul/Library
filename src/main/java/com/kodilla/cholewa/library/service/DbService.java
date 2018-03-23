@@ -1,9 +1,13 @@
-package com.kodilla.cholewa.library.repository;
+package com.kodilla.cholewa.library.service;
 
 import com.kodilla.cholewa.library.domain.copies.Copy;
 import com.kodilla.cholewa.library.domain.readers.Reader;
 import com.kodilla.cholewa.library.domain.rents.Rent;
 import com.kodilla.cholewa.library.domain.titles.Title;
+import com.kodilla.cholewa.library.repository.CopyRepository;
+import com.kodilla.cholewa.library.repository.ReaderRepository;
+import com.kodilla.cholewa.library.repository.RentRepository;
+import com.kodilla.cholewa.library.repository.TitleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
