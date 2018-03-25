@@ -9,6 +9,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@NamedNativeQuery(name = "Copy.countTitlesWithStatus",
+        query = "select count(*) from copies c, titles t where t.id = c.title_id and c.status=:copy_status and t.id=:title_id")
+
+
 @NoArgsConstructor
 @Getter
 @Entity(name = "COPIES")

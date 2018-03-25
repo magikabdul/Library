@@ -12,4 +12,13 @@ public class TitleMapper {
                 titleDto.getAuthor(),
                 titleDto.getPublicationYear());
     }
+
+    public TitleDto mapToTitleDto(Title title) {
+        return new TitleDto(
+                title.getId(),
+                title.getTitle(),
+                title.getAuthor(),
+                title.getPublicationYear()
+        );
+    }
 }

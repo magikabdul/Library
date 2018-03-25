@@ -11,6 +11,9 @@ import com.kodilla.cholewa.library.repository.TitleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class DbService {
     @Autowired
@@ -33,7 +36,7 @@ public class DbService {
         readerRepository.deleteById(readerId);
     }
 
-    public Reader getReader(final Long readerId) {
+    public Optional<Reader> getReader(final Long readerId) {
         return readerRepository.getReaderById(readerId);
     }
 
@@ -45,8 +48,12 @@ public class DbService {
         titleRepository.deleteById(titleId);
     }
 
-    public Title getTitle(final Long titleId) {
+    public Optional<Title> getTitle(final Long titleId) {
         return titleRepository.getTitleById(titleId);
+    }
+
+    public List<Title> getAllTitles() {
+        return titleRepository.getAllTitles();
     }
 
     public Copy saveCopy(final Copy copy) {
@@ -57,8 +64,16 @@ public class DbService {
         copyRepository.deleteById(copyId);
     }
 
-    public Copy getCopy(final Long copyId) {
+    public Optional<Copy> getCopy(final Long copyId) {
         return copyRepository.getCopyById(copyId);
+    }
+
+    public int countAvailableCopies(Long titleId) {
+        return copyRepository.countTitlesWithStatus(Copy.STATUS_AVAILABLE, titleId);
+    }
+
+    public Optional<Copy> findAvailableTitleCopy(Long titleId) {
+        return copyRepository.findByStatusAndTitleId(Copy.STATUS_AVAILABLE, titleId);
     }
 
     public Rent saveRent(final Rent rent) {
@@ -69,7 +84,7 @@ public class DbService {
         rentRepository.deleteById(rentId);
     }
 
-    public Rent getRent(final Long rentId) {
+    public Optional<Rent> getRent(final Long rentId) {
         return rentRepository.getRentById(rentId);
     }
 }

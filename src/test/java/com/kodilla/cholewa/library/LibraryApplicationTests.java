@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -123,4 +124,20 @@ public class LibraryApplicationTests {
 //		//CleanUp
 //		service.deleteRent(id);
 //	}
+
+	@Test
+	public void testGetAllTitles() {
+		//Given
+
+		//When
+		List<Title> titles = service.getAllTitles();
+		int size = titles.size();
+
+		//Then
+		//Assert.assertEquals(4, size);
+
+		for (Title t : titles) {
+			System.out.println(t);
+		}
+	}
 }

@@ -8,6 +8,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@NamedNativeQuery(name = "Title.getAllTitles",
+    query = "SELECT * FROM titles, copies WHERE copies.title_id = titles.id and copies.status LIKE ",
+    resultClass = Title.class)
+
 @NoArgsConstructor
 @Getter
 @Entity(name = "TITLES")
@@ -61,5 +65,15 @@ public class Title {
 
     public void setCopyList(List<Copy> copyList) {
         this.copyList = copyList;
+    }
+
+    @Override
+    public String toString() {
+        return "Title{" +
+                "id='" + id + '\'' +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", publicationYear=" + publicationYear +
+                '}';
     }
 }
